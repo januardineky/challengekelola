@@ -24,6 +24,8 @@ class ProductController extends Controller
             // 'image' => 'nullable|string',
         ]);
 
+        $file_name = null;
+
         if ($request->file('image')) {
             $file_name = $request->name.'.'.$request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('image', $file_name);
@@ -34,7 +36,7 @@ class ProductController extends Controller
         $file_name? $product->update(['image' => $file_name]):null;
 
         return response()->json([
-            'message' => 'jalan',
+            'message' => 'Success',
             'data' => $product,
             // 'image' =>
         ], 200);
